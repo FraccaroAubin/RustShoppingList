@@ -6,6 +6,15 @@ fn add_item(new_item : &str, shop_list: &mut Vec<String>){
     println!("Added item: {} to the list", new_item);
 }
 
+fn remove_item(selection: &str, shop_list: &mut Vec<String>){
+    if let Some(index) = shop_list.iter().position(|x| x.trim() == selection.trim()){
+        println!("Item removed {}", selection);
+        shop_list.remove(index);
+    }
+    else {
+        println!("Item not found");
+    }
+}
 
 fn main() {
     println!("--- Shoping List ---");
@@ -33,7 +42,15 @@ fn main() {
             add_item(new_item.trim(), &mut shop_list);
 
         } ,
-        "2" => {},
+        "2" => {
+            println!("Type the item you want to remove:");
+            let mut selection = String::new();
+            io::stdin()
+                .read_line(&mut selection)
+                .expect("Failed to read line");
+
+            remove_item(selection.trim(), &mut shop_list);
+        },
         "3" => {},
         "4" => {},
          _ => {
