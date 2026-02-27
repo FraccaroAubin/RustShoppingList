@@ -16,6 +16,12 @@ fn remove_item(selection: &str, shop_list: &mut Vec<String>){
     }
 }
 
+fn print_shopping_list(shop_list: &mut Vec<String>){
+    for(index, item) in shop_list.iter().enumerate(){
+        println!("{}: {} in shopping_list",index+1, item);
+    }
+}
+
 fn main() {
     println!("--- Shoping List ---");
     let mut shop_list: Vec<String> = Vec::new();
